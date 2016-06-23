@@ -7,10 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= link_to "Home", root_path %>
-  |
-  <%= link_to "About", about_path %>
+  <%= render "/layouts/navbar" %>
+
+  <% if flash[:notice] %>
+    <div class="flash-notice"><%= flash[:notice] %></div>
+  <% elsif flash[:alert] %>
+    <div class="flash-alert"><%= flash[:alert] %></div>
+  <% end %>
+
 <%= yield %>
+
 
 </body>
 </html>

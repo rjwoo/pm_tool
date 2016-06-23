@@ -1,0 +1,10 @@
+<h1><%= @task.title %></h1>
+<div>
+  <p><%= @task.due_date %></p>
+</div>
+<div>
+  <%= link_to "Edit", edit_task_path(@task) %>
+  |
+  <%= link_to "Delete", task_path(@task), method: :delete,
+                                           data:{confirm: "Deleting will permanently remove task from database"} %>
+</div>
