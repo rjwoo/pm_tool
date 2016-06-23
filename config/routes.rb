@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  # root 'home#index'
+  resources :pm_tool
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -56,5 +59,5 @@ Rails.application.routes.draw do
 
   get "/" => "home#index", as: :root
   get "/about" => "home#about"
-  
+
 end
