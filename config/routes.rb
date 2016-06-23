@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   # root 'home#index'
   resources :tasks
+  resources :projects
 
 
   get "/" => "home#index", as: :root

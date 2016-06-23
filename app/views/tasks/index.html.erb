@@ -3,7 +3,7 @@
 <% @task.each do |task| %>
   <div>
     <h2><%= link_to task.title, task_path(task) %></h2>
-    <p><%= link_to task.due_date %></p>
+    <p class="due_date"><%= task.due_date %></p>
     <hr>
   </div>
 <% end %>

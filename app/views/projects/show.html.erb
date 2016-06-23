@@ -1,0 +1,15 @@
+<h1><%= @project.title %></h1>
+
+<div>
+  Description: <%= @project.description %>
+</div>
+<div class="due_date">
+  Due Date: <%= @project.due_date %>
+</div>
+
+<div>
+  <%= link_to "Edit", edit_project_path(@project) %>
+  |
+  <%= link_to "Delete", project_path(@project), method: :delete,
+                                                data:{confirm: "Deleting will permantly remove project"} %>
+</div>
