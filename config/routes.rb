@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   # root 'home#index'
   resources :tasks
-  resources :projects
+  resources :projects do
+    resources :discussions, only: [:create, :destroy]
+  end
 
 
   get "/" => "home#index", as: :root
