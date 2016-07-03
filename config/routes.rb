@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :users, only: [:new, :create]
+
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+
   resources :comments
 
   # root 'home#index'
-  resources :tasks
   resources :projects do
+    resources :tasks, only: [:create, :destroy]
+
     resources :discussions, only: [:create, :destroy, :show]
   end
 

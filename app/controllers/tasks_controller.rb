@@ -7,18 +7,21 @@ before_action :find_tasks, only: [:show, :edit, :update, :destroy]
   end
 
   def create
+    task_params = params.require(:task).permit(:body)
     @task = Task.new task_params
+    @project = Project.find params[:project_id]
+    @task.project = @project
     if @task.save
       flash[:notice] = "Task created!"
-      redirect_to task_path(@task)
+      redirect_to project_path(@project)
     else
       flash[:alert] = "Was not able to create task!"
-      render :new
+      render "/projects/show"
     end
   end
 
   def index
-    @task = Task.all
+    @tasks = Task.all
   end
 
   def show

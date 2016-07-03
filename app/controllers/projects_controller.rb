@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 before_action :project_params, only: [:create, :update]
 before_action :find_projects, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @project = Project.new
@@ -23,6 +24,7 @@ before_action :find_projects, only: [:show, :edit, :update, :destroy]
 
   def show
     @discussion = Discussion.new
+    @task = Task.new
   end
 
   def edit

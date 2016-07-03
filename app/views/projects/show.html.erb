@@ -14,6 +14,27 @@
                                                 data:{confirm: "Deleting will permantly remove project"} %>
 </div>
 
+<h3>Tasks for <%= @project.title %></h3>
+
+<% @project.tasks.each do |task| %>
+    <ul>
+      <li><%= task.body %></li>
+    </ul>
+<% end %>
+
+<hr>
+<h2>Add New Task</h2>
+<%# @task.errors.full_messages.join(", ") %>
+
+<%= form_for [@project, @task] do |f| %>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+  </div>
+  <%= f.submit %>
+<% end %>
+<hr>
+
 <h2>Discussions</h2>
 
 <h3>Add New Discussion</h3>
@@ -31,6 +52,7 @@
 <% end %>
 
 <% @project.discussions.each do |discussion| %>
-  <p><%= link_to discussion.title, project_discussions_path(@project) %></p>
+  <p><%#= link_to discussion.title, project_discussion_path() %></p>
   <hr>
+  <!-- have to find a way to link to show page of discussion, add comments there -->
 <% end %>
