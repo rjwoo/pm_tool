@@ -13,3 +13,24 @@
   <%= link_to "Delete", project_path(@project), method: :delete,
                                                 data:{confirm: "Deleting will permantly remove project"} %>
 </div>
+
+<h2>Discussions</h2>
+
+<h3>Add New Discussion</h3>
+<%= @discussion.errors.full_messages.join(", ") %>
+<%= form_for [@project, @discussion] do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <%= f.submit %>
+<% end %>
+
+<% @project.discussions.each do |discussion| %>
+  <p><%= link_to discussion.title, project_discussions_path(@project) %></p>
+  <hr>
+<% end %>

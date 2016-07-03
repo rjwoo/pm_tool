@@ -40,7 +40,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it "doesn't save a record to the database" do
-        count_before = Project.count_before
+        count_before = Project.count
         invalid_request
         count_after = Project.count
         expect(count_after).to eq(count_before)

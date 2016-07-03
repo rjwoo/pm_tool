@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :comments
+
   # root 'home#index'
   resources :tasks
   resources :projects do
-    resources :discussions, only: [:create, :destroy]
+    resources :discussions, only: [:create, :destroy, :show]
   end
 
 

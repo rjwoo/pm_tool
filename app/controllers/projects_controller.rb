@@ -18,10 +18,11 @@ before_action :find_projects, only: [:show, :edit, :update, :destroy]
   end
 
   def index
-    @project = Project.all
+    @projects = Project.all
   end
 
   def show
+    @discussion = Discussion.new
   end
 
   def edit
