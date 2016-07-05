@@ -11,4 +11,15 @@ class Project < ActiveRecord::Base
 
   validates :due_date, presence: true
 
+  has_many :favourites, dependent: :destroy
+  has_many :users, through: :like
+
+  def favourited_by?(user)
+    favourites.exists?(user: user)
+  end
+
+  def favourite_for(user)
+    favourites.find_by_user_id(user)
+  end
+
 end

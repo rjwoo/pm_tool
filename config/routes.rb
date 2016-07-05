@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   # root 'home#index'
   resources :projects do
+    resources :favourites, only: [:create, :destroy]
     resources :tasks, only: [:create, :destroy]
 
     resources :discussions, only: [:create, :destroy, :show]

@@ -25,6 +25,7 @@ before_action :authenticate_user!, except: [:index, :show]
   def show
     @discussion = Discussion.new
     @task = Task.new
+    @favourite = @project.favourite_for(current_user)
   end
 
   def edit
