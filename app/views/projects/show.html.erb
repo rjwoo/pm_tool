@@ -24,7 +24,7 @@
 
 <% @project.tasks.each do |task| %>
     <ul>
-      <li><%= task.body %></li>
+      <li><%= task.body %> | <%= link_to task.undone, undone_project_task_path(@project, task), method: :patch %> </li>
     </ul>
 <% end %>
 
@@ -58,7 +58,7 @@
 <% end %>
 
 <% @project.discussions.each do |discussion| %>
-  <p><%#= link_to discussion.title, project_discussion_path() %></p>
+  <p><%= link_to discussion.title, project_discussion_path(@project, discussion) %></p>
   <hr>
   <!-- have to find a way to link to show page of discussion, add comments there -->
 <% end %>

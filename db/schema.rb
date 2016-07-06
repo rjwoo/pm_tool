@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705015131) do
+ActiveRecord::Schema.define(version: 20160706000718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,11 +53,28 @@ ActiveRecord::Schema.define(version: 20160705015131) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["project_id"], name: "index_taggings_on_project_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.text     "body"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "undone",     default: "Not Done"
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
@@ -77,5 +94,7 @@ ActiveRecord::Schema.define(version: 20160705015131) do
   add_foreign_key "discussions", "projects"
   add_foreign_key "favourites", "projects"
   add_foreign_key "favourites", "users"
+  add_foreign_key "taggings", "projects"
+  add_foreign_key "taggings", "tags"
   add_foreign_key "tasks", "projects"
 end

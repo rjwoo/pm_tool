@@ -44,10 +44,22 @@ before_action :find_tasks, only: [:show, :edit, :update, :destroy]
     redirect_to tasks_path
   end
 
+  def undone
+    @task = Task.find params[:id]
+    @project = Project.find params[:project_id]
+    @task.project = @project
+    if @task.undone === 'Not Done'
+      @task.update(undone: 'Done' )
+    else
+      @task.update(undone: 'Not Done')
+    end
+    redirect_to project_path(@project)
+  end
+
   private
 
   def task_params
-    task_params = params.require(:task).permit(:title, :due_date)
+    task_params = params.require(:task).permit(:body, :undone)
   end
 
   def find_tasks
