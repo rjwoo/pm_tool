@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+#username_bar {
+  text-align: right;
+  float: right;
+}

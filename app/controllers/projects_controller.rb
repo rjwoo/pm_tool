@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 before_action :project_params, only: [:create, :update]
 before_action :find_projects, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:index, :show]
+before_action :authorize_owner, only: [:edit, :destroy, :update]
 
   def new
     @project = Project.new
@@ -54,4 +55,9 @@ before_action :authenticate_user!, except: [:index, :show]
   def find_projects
     @project = Project.find params[:id]
   end
+
+  def authorize_owner
+    redirect_to root_path, alert: "Access Denied" unless can? :manage, @question
+  end
+
 end

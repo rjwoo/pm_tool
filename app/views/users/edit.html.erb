@@ -1,0 +1,20 @@
+<h1>Edit Your Profile</h1>
+
+<%= form_for @user, url:users_path do |f| %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <%= link_to "Password Change", edit_password_path(@user) %>
+  <br>
+
+  <%= f.submit "Confirm Changes" %>
+<% end %>
