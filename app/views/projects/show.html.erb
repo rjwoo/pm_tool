@@ -3,6 +3,11 @@
 <div>
   Description: <%= @project.description %>
 </div>
+<div id="tags">
+  Tags: <% @project.tags.map do |t|%>
+          <%= t.title %>
+        <% end %>
+</div>
 <div class="due_date">
   Due Date: <%= @project.due_date %>
 </div>

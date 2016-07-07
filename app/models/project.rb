@@ -14,6 +14,9 @@ class Project < ActiveRecord::Base
   has_many :favourites, dependent: :destroy
   has_many :users, through: :like
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
   def favourited_by?(user)
     favourites.exists?(user: user)
   end

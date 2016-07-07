@@ -48,7 +48,7 @@ before_action :authenticate_user!, except: [:index, :show]
   private
 
   def project_params
-    project_params = params.require(:project).permit(:title, :description, :due_date)
+    project_params = params.require(:project).permit(:title, :description, {tag_ids: []}, :due_date )
   end
 
   def find_projects
