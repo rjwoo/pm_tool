@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 before_action :task_params, only: [:create, :update]
-before_action :find_tasks, only: [:show, :edit, :update, :destroy]
+before_action :find_tasks, only: [:show, :edit, :update, :destroy, :undone]
 
   def new
     @task = Task.new
@@ -45,7 +45,6 @@ before_action :find_tasks, only: [:show, :edit, :update, :destroy]
   end
 
   def undone
-    @task = Task.find params[:id]
     @project = Project.find params[:project_id]
     @task.project = @project
     if @task.undone === 'Not Done'

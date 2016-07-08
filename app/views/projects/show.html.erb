@@ -8,6 +8,11 @@
           <%= t.title %>
         <% end %>
 </div>
+<div id="members">
+  Project Members: <% @project.members do |t| %>
+                    <%= t.user_id %>
+                   <% end %>
+</div>
 <div class="due_date">
   Due Date: <%= @project.due_date %>
 </div>
@@ -16,13 +21,21 @@
   <%= link_to "Un-Favourite", project_favourite_path(@project, @project.favourite_for(current_user)), method: :delete %>
 <% else %>
   <%= link_to "Favourite", project_favourites_path(@project), method: :post %>
+<% end %> |
+
+<% if @project.joined_by?(current_user) %>
+  <%= link_to "Leave", project_member_path(@project, @project.member_of(current_user)), method: :delete %>
+<% else %>
+  <%= link_to "Join", project_members_path(@project), method: :post %>
 <% end %>
 
 <div>
-  <%= link_to "Edit", edit_project_path(@project) %>
-  |
-  <%= link_to "Delete", project_path(@project), method: :delete,
-                                                data:{confirm: "Deleting will permantly remove project"} %>
+  <% if can? :manage, @project %>
+    <%= link_to "Edit", edit_project_path(@project)%>
+    |
+    <%= link_to "Delete", project_path(@project), method: :delete,
+                                                  data:{confirm: "Deleting will permantly remove project"} %>
+  <% end %>
 </div>
 
 <h3>Tasks for <%= @project.title %></h3>

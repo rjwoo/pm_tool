@@ -10,6 +10,7 @@ before_action :authorize_owner, only: [:edit, :destroy, :update]
 
   def create
     @project = Project.new project_params
+    @project.tag = current_user
     if @project.save
       flash[:notice] = "Project Created!"
       redirect_to project_path(@project)
@@ -26,7 +27,9 @@ before_action :authorize_owner, only: [:edit, :destroy, :update]
   def show
     @discussion = Discussion.new
     @task = Task.new
-    @favourite = @project.favourite_for(current_user)
+    # @favourite = @project.favourite_for(current_user)
+    # @member = @project.member_of(current_user)
+    @user = current_user
   end
 
   def edit
