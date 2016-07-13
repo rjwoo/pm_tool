@@ -10,7 +10,6 @@ before_action :authorize_owner, only: [:edit, :destroy, :update]
 
   def create
     @project = Project.new project_params
-    @project.tag = current_user
     if @project.save
       flash[:notice] = "Project Created!"
       redirect_to project_path(@project)
@@ -52,7 +51,7 @@ before_action :authorize_owner, only: [:edit, :destroy, :update]
   private
 
   def project_params
-    project_params = params.require(:project).permit(:title, :description, {tag_ids: []}, :due_date )
+    @project_params = params.require(:project).permit(:title, :description, :tag_ids, :due_date )
   end
 
   def find_projects

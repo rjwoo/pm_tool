@@ -12,6 +12,12 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  def update
+  end
+
+  def edit
+  end
+
   def show
     @discussion = Discussion.find params[:id]
   end

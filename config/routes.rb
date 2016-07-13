@@ -18,13 +18,13 @@ Rails.application.routes.draw do
   # root 'home#index'
   resources :projects do
 
-    resources :members, only: [:create, :destroy]  
+    resources :members, only: [:create, :destroy]
     resources :favourites, only: [:create, :destroy]
     resources :tasks do
       patch :undone, on: :member, as: :undone
     end
 
-    resources :discussions, only: [:create, :destroy, :show]
+    resources :discussions
   end
 
 
