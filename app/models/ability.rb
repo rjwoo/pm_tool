@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     # Define abilities for the passed in user here. For example:
-    #
+    # if 'current_user' is not nil then it will use it, otherwise, 'user' object will be set to a new 'User'
       user ||= User.new
 
       can :manage, Project do |project|
@@ -12,6 +12,14 @@ class Ability
 
       can :manage, Favourite do |favourite|
         favourite.user == user
+      end
+      #
+      # can :manage, Discussion do |discussion|
+      #   discussion.user == user
+      # end
+
+      can :destroy, Comment do |comment|
+        comment.user == user
       end
 
       if user.is_admin?

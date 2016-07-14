@@ -1,7 +1,7 @@
 <h1><%= @project.title %></h1>
 
 <div>
-  Description: <%= @project.description %>
+  <p>Description: <%= @project.description %></p>
 </div>
 <div id="tags">
   Tags: <% @project.tags.map do |t|%>
@@ -14,7 +14,7 @@
                    <% end %>
 </div>
 <div class="due_date">
-  Due Date: <%= @project.due_date %>
+  Due Date: <%= format_time(@project.due_date) %>
 </div>
 
 <% if @project.favourited_by?(current_user) %>
@@ -84,7 +84,7 @@
     <%= link_to "Edit", edit_project_discussion_path(@project, discussion) %>
     |
     <%= link_to "Delete", project_path(@project), method: :delete,
-    data:{confirm: "Deleting will permantly remove project"} %>
+    data:{confirm: "Deleting will permanently remove project"} %>
     <% end %>
   </div>
 <% end %>

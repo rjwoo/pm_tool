@@ -13,8 +13,6 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  resources :comments
-
   # root 'home#index'
   resources :projects do
 
@@ -27,6 +25,9 @@ Rails.application.routes.draw do
     resources :discussions
   end
 
+  resources :discussions, only: [] do
+    resources :comments, only: [:create, :destroy]
+  end
 
   get "/" => "home#index", as: :root
   get "/about" => "home#about"
@@ -65,8 +66,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end

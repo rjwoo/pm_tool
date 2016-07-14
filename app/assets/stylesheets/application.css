@@ -19,3 +19,11 @@
   text-align: right;
   float: right;
 }
+
+.discussion {
+  text-align: center;
+}
+
+.discussion-body {
+  font-style: italic;
+}

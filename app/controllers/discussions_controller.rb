@@ -12,6 +12,10 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  # def index
+  #   @discussions = Discussion.all
+  # end
+
   def update
   end
 
@@ -20,6 +24,7 @@ class DiscussionsController < ApplicationController
 
   def show
     @discussion = Discussion.find params[:id]
+    @comment = Comment.new
   end
 
   def destroy

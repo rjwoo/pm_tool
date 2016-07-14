@@ -4,6 +4,8 @@ class Project < ActiveRecord::Base
 
   has_many :discussions, dependent: :destroy
 
+  belongs_to :user, dependent: :destroy
+
   validates :title, presence: true,
                     uniqueness: true
 
@@ -34,7 +36,7 @@ class Project < ActiveRecord::Base
   def joined_by?(user)
     members.exists?(user: user)
   end
-  
+
   def full_name
     "#{first_name} #{last_name}"
   end

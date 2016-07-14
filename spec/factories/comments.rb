@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :comment do
-    discussion nil
     body "MyText"
+    discussion nil
   end
 end
