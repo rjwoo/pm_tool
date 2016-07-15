@@ -3,6 +3,16 @@
   <h3 class="discussion-body"><%= @discussion.body %></h3>
 </div>
 
+<h2>Add New Comment</h2>
+<%= form_for [@discussion, @comment] do |f| %>
+<div>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+</div>
+<%= f.submit %>
+<% end %>
+<hr>
+
 <h3>Comments</h3>
 <% @comment.errors.full_messages.join(", ") %>
 <% @discussion.comments.each do |comment| %>
@@ -14,13 +24,3 @@
   <% end %>
   <hr>
 <% end %>
-
-<h2>Add New Comment</h2>
-<%= form_for [@discussion, @comment] do |f| %>
-<div>
-  <%= f.label :body %>
-  <%= f.text_field :body %>
-</div>
-<%= f.submit %>
-<% end %>
-<hr>

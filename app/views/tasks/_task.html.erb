@@ -1,0 +1,3 @@
+<div id="tasks">
+    <li><%= task.body %> | <%= link_to task.undone, undone_project_task_path(@project, task), method: :patch %> </li>
+</div>

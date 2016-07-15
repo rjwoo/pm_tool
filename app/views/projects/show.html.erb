@@ -2,6 +2,7 @@
 
 <div>
   <p>Description: <%= @project.description %></p>
+  <p>Created by: <%= @project.user.full_name if @project.user %></p>
 </div>
 <div id="tags">
   Tags: <% @project.tags.map do |t|%>
@@ -30,39 +31,33 @@
 <% end %>
 
 <div>
-  <% if can? :manage, @project %>
     <%= link_to "Edit", edit_project_path(@project)%>
     |
     <%= link_to "Delete", project_path(@project), method: :delete,
                                                   data:{confirm: "Deleting will permantly remove project"} %>
-  <% end %>
 </div>
 
 <h3>Tasks for <%= @project.title %></h3>
 
 <% @project.tasks.each do |task| %>
-    <ul>
-      <li><%= task.body %> | <%= link_to task.undone, undone_project_task_path(@project, task), method: :patch %> </li>
-    </ul>
+  <ul>
+    <%= render "/tasks/task", task: task %>
+  </ul>
 <% end %>
 
 <hr>
 <h2>Add New Task</h2>
-<%# @task.errors.full_messages.join(", ") %>
-
-<%= form_for [@project, @task] do |f| %>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
+  <div id="task-form">
+    <%= render "/tasks/form" %>
   </div>
-  <%= f.submit %>
-<% end %>
 <hr>
 
 <h2>Discussions</h2>
 
 <h3>Add New Discussion</h3>
+
 <%= @discussion.errors.full_messages.join(", ") %>
+<% end %>
 <%= form_for [@project, @discussion] do |f| %>
   <div>
     <%= f.label :title %>
@@ -74,6 +69,7 @@
   </div>
   <%= f.submit %>
 <% end %>
+<hr>
 
 
 <% @project.discussions.each do |discussion| %>
@@ -83,7 +79,7 @@
     <% if can? :manage, discussion %>
     <%= link_to "Edit", edit_project_discussion_path(@project, discussion) %>
     |
-    <%= link_to "Delete", project_path(@project), method: :delete,
+    <%= link_to "Delete", project_discussion_path(@project, discussion), method: :delete,
     data:{confirm: "Deleting will permanently remove project"} %>
     <% end %>
   </div>

@@ -11,12 +11,14 @@ before_action :find_tasks, only: [:show, :edit, :update, :destroy, :undone]
     @task = Task.new task_params
     @project = Project.find params[:project_id]
     @task.project = @project
-    if @task.save
-      flash[:notice] = "Task created!"
-      redirect_to project_path(@project)
-    else
-      flash[:alert] = "Was not able to create task!"
-      render "/projects/show"
+    respond_to do |format|
+      if @task.save
+        format.html   { redirect_to project_path(@project), notice: "Task created!" }
+        format.js     { render :create_success }
+      else
+        format.html   { render "/projects/show" }
+        format.js     { render :create_failure }
+      end
     end
   end
 

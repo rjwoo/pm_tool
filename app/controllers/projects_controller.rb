@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 before_action :project_params, only: [:create, :update]
 before_action :find_projects, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!, except: [:index, :show]
-before_action :authorize_owner, only: [:edit, :destroy, :update]
+# before_action :authorize_owner, only: [:edit, :destroy, :update]
 
   def new
     @project = Project.new
@@ -10,6 +10,7 @@ before_action :authorize_owner, only: [:edit, :destroy, :update]
 
   def create
     @project = Project.new project_params
+    @project.user = current_user
     if @project.save
       flash[:notice] = "Project Created!"
       redirect_to project_path(@project)

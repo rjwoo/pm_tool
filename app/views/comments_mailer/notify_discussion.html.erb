@@ -1,0 +1,9 @@
+<p>Hi <%= @discussion.user.full_name %>,</p>
+
+<p><%= @user.full_name.capitalize %> has just commented on your discussion: <%= @discussion.title %>.</p>
+
+<p>Click <%= link_to "here", discussion_url(@discussion) %> to view your post. </p>
+
+<p>Regards,</p>
+
+<p>The Loiter Squad</p>

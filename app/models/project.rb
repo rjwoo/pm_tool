@@ -4,22 +4,23 @@ class Project < ActiveRecord::Base
 
   has_many :discussions, dependent: :destroy
 
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
 
+  has_many :favourites, dependent: :destroy
+  has_many :favourited_users, through: :favourites
+
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
+  has_many :members, dependent: :destroy
+  has_many :added_users, through: :members
+  
   validates :title, presence: true,
-                    uniqueness: true
+  uniqueness: true
 
   validates :description, presence: true
 
   validates :due_date, presence: true
-
-  has_many :favourites, dependent: :destroy
-  has_many :users, through: :like
-
-  has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings
-  has_many :members, dependent: :destroy
-  has_many :added_users, through: :members
 
   def favourited_by?(user)
     favourites.exists?(user: user)

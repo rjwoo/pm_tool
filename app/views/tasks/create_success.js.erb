@@ -1,0 +1,3 @@
+$("#tasks").append("<%= j(render('/tasks/task', {task: @task})) %>");
+<% @task = Task.new %>
+$("#task-form").html("<%= j render 'form' %>");
