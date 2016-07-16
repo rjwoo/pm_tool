@@ -27,3 +27,11 @@
 .discussion-body {
   font-style: italic;
 }
+
+h1 {
+  text-align: center;
+}
+
+#about {
+  text-align: center;
+}

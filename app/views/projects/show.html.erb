@@ -57,17 +57,11 @@
 <h3>Add New Discussion</h3>
 
 <%= @discussion.errors.full_messages.join(", ") %>
-<% end %>
-<%= form_for [@project, @discussion] do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_area :title %>
-  </div>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
-  <%= f.submit %>
+
+<%= simple_form_for [@project, @discussion] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :body %>
+  <%= f.button :submit, class: "btn-primary" %>
 <% end %>
 <hr>
 
@@ -83,5 +77,5 @@
     data:{confirm: "Deleting will permanently remove project"} %>
     <% end %>
   </div>
+  <hr>
 <% end %>
-<hr>

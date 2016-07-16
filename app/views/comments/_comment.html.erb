@@ -1,0 +1,9 @@
+<div id="<%= dom_id(comment) %>">
+  <p><%= comment.body %></body></p>
+  <p>Created at: <%= format_time(comment.created_at) %></p>
+  <p>Commented by: <%= comment.user.first_name if comment.user %></p>
+  <% if can? :destroy, comment %>
+    <%= link_to "Delete Comment", discussion_comment_path(comment.discussion, comment), method: :delete, remote: true, data:{confirm: "Are you sure you want to permanently remove this comment?"} %>
+  <% end %>
+  <hr>
+</div>

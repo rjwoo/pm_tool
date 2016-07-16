@@ -5,6 +5,7 @@ class DiscussionsController < ApplicationController
     @project = Project.find params[:project_id]
     discussion_params = params.require(:discussion).permit(:title, :body)
     @discussion = Discussion.new discussion_params
+    @discussion.user = current_user
     @discussion.project = @project
     @task = Task.new
     if @discussion.save

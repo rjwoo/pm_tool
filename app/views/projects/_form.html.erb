@@ -1,23 +1,9 @@
 <%= @project.errors.full_messages.join(", ") %>
 
-<%= form_for @project do |f| %>
-  <%#= f.input :title %>
-  <%#= f.input :description %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :description %>
-    <%= f.text_field :description%>
-  </div>
-  <div>
-    <%= f.label :tag_id %>:
-    <%= f.collection_radio_buttons(:tag_ids, Tag.order(:title), :id, :title) %>
-  </div>
-  <div>
-    <%= f.label :due_date %>
-    <%= f.text_field :due_date %>
-  </div>
-  <%= f.submit %>
+<%= simple_form_for @project do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.association :tags, as: :radio_buttons %>
+  <%= f.input :due_date %>
+  <%= f.button :submit, class: "btn-primary" %>
 <% end %>

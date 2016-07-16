@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
                     format: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   has_many :projects, dependent: :nullify
+  has_many :discussions, dependent: :nullify
 
   has_many :favourites, dependent: :destroy
   has_many :favourited_projects, through: :favourites, source: :project
