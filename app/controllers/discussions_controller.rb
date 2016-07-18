@@ -1,5 +1,5 @@
 class DiscussionsController < ApplicationController
-  # before_action :authorize_owner!, only: [:edit, :destroy, :update]
+  before_action :authorize_owner!, only: [:edit, :destroy, :update]
 
   def create
     @project = Project.find params[:project_id]
