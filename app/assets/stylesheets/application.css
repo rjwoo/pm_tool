@@ -15,11 +15,6 @@
  *= require font-awesome
  */
 
-#username_bar {
-  text-align: right;
-  float: right;
-}
-
 .discussion {
   text-align: center;
 }
@@ -28,10 +23,54 @@
   font-style: italic;
 }
 
-h1 {
+/*h1 {
   text-align: center;
-}
+}*/
 
 #about {
   text-align: center;
+}
+
+header {
+  background-image: url("background-img.JPG");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  background-size: cover;
+
+  width: 100%;
+  height: 560px;
+  position: relative;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.nav-item {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.page-title {
+  text-align: center;
+}
+
+p {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.about-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
