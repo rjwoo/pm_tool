@@ -1,81 +1,84 @@
-<h1 class="page-title"><%= @project.title %></h1>
-
-<div>
-  <p>Description: <%= @project.description %></p>
-  <p>Created by: <%= @project.user.full_name if @project.user %></p>
-</div>
-<div id="tags">
-  Tags: <% @project.tags.map do |t|%>
-          <%= t.title %>
-        <% end %>
-</div>
-<div id="members">
-  Project Members: <% @project.members.each do |t| %>
-                    <%= t.user.first_name %>
-                   <% end %>
-</div>
-<div class="due_date">
-  Due Date: <%= format_time(@project.due_date) %>
-</div>
-
-<% if @project.favourited_by?(current_user) %>
-  <%= link_to fa_icon("thumbs-up"), project_favourite_path(@project, @project.favourite_for(current_user)), method: :delete, class: "like-icon" %>
-<% else %>
-  <%= link_to fa_icon("thumbs-o-up"), project_favourites_path(@project), method: :post, class: "like-icon" %>
-<% end %> |
-
-<% if @project.joined_by?(current_user) %>
-  <%= link_to "Leave", project_member_path(@project, @project.member_of(current_user)), method: :delete %>
-<% else %>
-  <%= link_to "Join", project_members_path(@project), method: :post %>
-<% end %>
-
-<div>
-    <%= link_to "Edit", edit_project_path(@project)%>
-    |
-    <%= link_to "Delete", project_path(@project), method: :delete,
-                                                  data:{confirm: "Deleting will permantly remove project"} %>
-</div>
-
-<h3>Tasks for <%= @project.title %></h3>
-
-<% @project.tasks.each do |task| %>
-  <ul>
-    <%= render "/tasks/task", task: task %>
-  </ul>
-<% end %>
-
-<hr>
-<h2>Add New Task</h2>
-  <div id="task-form">
-    <%= render "/tasks/form" %>
-  </div>
-<hr>
-
-<h2>Discussions</h2>
-
-<h3>Add New Discussion</h3>
-
-<%= @discussion.errors.full_messages.join(", ") %>
-
-<%= simple_form_for [@project, @discussion] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :body %>
-  <%= f.button :submit, class: "btn-primary" %>
-<% end %>
-<hr>
-
-
-<% @project.discussions.each do |discussion| %>
-  <p><%= link_to discussion.title, project_discussion_path(@project, discussion) %></p>
-  <!-- have to find a way to link to show page of discussion, add comments there -->
-  <div>
-    <% if can? :manage, discussion %>
-    <%= link_to "Edit", edit_project_discussion_path(@project, discussion) %>
-    |
-    <%= link_to "Delete", project_discussion_path(@project, discussion), method: :delete,
-    data:{confirm: "Deleting will permanently remove project"} %>
-    <% end %>
-  </div>
+<div class="forms">
+  <h1 class="page-title"><%= @project.title %></h1>
   <hr>
-<% end %>
+
+  <div>
+    <p>Description: <%= @project.description %></p>
+    <p>Created by: <%= @project.user.full_name if @project.user %></p>
+  </div>
+  <div id="tags">
+    Tags: <% @project.tags.map do |t|%>
+            <%= t.title %>
+          <% end %>
+  </div>
+  <div id="members">
+    Project Members: <% @project.members.each do |t| %>
+                      <%= t.user.first_name %>
+                     <% end %>
+  </div>
+  <div class="due_date">
+    Due Date: <%= format_time(@project.due_date) %>
+  </div>
+
+  <% if @project.favourited_by?(current_user) %>
+    <%= link_to fa_icon("thumbs-up"), project_favourite_path(@project, @project.favourite_for(current_user)), method: :delete, class: "like-icon" %>
+  <% else %>
+    <%= link_to fa_icon("thumbs-o-up"), project_favourites_path(@project), method: :post, class: "like-icon" %>
+  <% end %> |
+
+  <% if @project.joined_by?(current_user) %>
+    <%= link_to "Leave", project_member_path(@project, @project.member_of(current_user)), method: :delete %>
+  <% else %>
+    <%= link_to "Join", project_members_path(@project), method: :post %>
+  <% end %>
+
+  <div>
+      <%= link_to "Edit", edit_project_path(@project)%>
+      |
+      <%= link_to "Delete", project_path(@project), method: :delete,
+                                                    data:{confirm: "Deleting will permantly remove project"} %>
+  </div>
+
+  <h3>Tasks for <%= @project.title %></h3>
+
+  <% @project.tasks.each do |task| %>
+    <ul>
+      <%= render "/tasks/task", task: task %>
+    </ul>
+  <% end %>
+
+  <hr>
+  <h2>Add New Task</h2>
+    <div id="task-form">
+      <%= render "/tasks/form" %>
+    </div>
+  <hr>
+
+  <h2>Discussions</h2>
+
+  <h3>Add New Discussion</h3>
+
+  <%= @discussion.errors.full_messages.join(", ") %>
+
+  <%= simple_form_for [@project, @discussion] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :body %>
+    <%= f.button :submit, class: "btn-primary" %>
+  <% end %>
+  <hr>
+
+
+  <% @project.discussions.each do |discussion| %>
+    <p><%= link_to discussion.title, project_discussion_path(@project, discussion) %></p>
+    <!-- have to find a way to link to show page of discussion, add comments there -->
+    <div>
+      <% if can? :manage, discussion %>
+      <%= link_to "Edit", edit_project_discussion_path(@project, discussion) %>
+      |
+      <%= link_to "Delete", project_discussion_path(@project, discussion), method: :delete,
+      data:{confirm: "Deleting will permanently remove project"} %>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+</div>

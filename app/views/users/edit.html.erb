@@ -1,11 +1,13 @@
-<h1>Edit Your Profile</h1>
+<div class="forms">
+  <h1>Edit Your Profile</h1>
 
-<%= simple_form_for @user, url:users_path do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :email %>
-  <%= link_to "Password Change", edit_password_path(@user) %>
-  <div>
-    <%= f.button :submit, class: "btn-primary" %>
-  </div>
-<% end %>
+  <%= simple_form_for @user, url:users_path do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= link_to "Password Change", edit_password_path(@user) %>
+    <div>
+      <%= f.button :submit, class: "btn-primary" %>
+    </div>
+  <% end %>
+</div>

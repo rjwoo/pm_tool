@@ -56,6 +56,15 @@ header {
   transform: translateX(-50%) translateY(-50%);
 }
 
+.forms {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.login {
+  padding-top: 20px;
+}
+
 .nav-item {
   padding-left: 20px;
   padding-right: 20px;
@@ -65,12 +74,17 @@ header {
   text-align: center;
 }
 
-p {
-  padding-left: 50px;
-  padding-right: 50px;
+/* ABOUT */
+.about-title {
+  margin-bottom: 50px;
+}
+
+.about-paragraph {
+  padding-left: 250px;
+  padding-right: 250px;
 }
 
 .about-container {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }

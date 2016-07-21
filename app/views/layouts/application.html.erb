@@ -9,7 +9,6 @@
 </head>
 
 <body>
-<!-- <div class="container"> -->
   <%= render "/layouts/navbar" %>
 
   <% if flash[:notice] %>
@@ -19,17 +18,7 @@
   <% end %>
 
 <%= yield %>
-<!-- </div> -->
-<div class="about-container">
-  <h1 class="page-title">What is Manage Me?</h1>
-  <div id="about">
-    <p>Manage Me is a tool meant to allow users to organize and keep track of the projects along with the tasks pending completion. This web application will also enable its users to add feedback via discussions and comments within each project.<p>
-  </div>
 
-  <div id="about">
-    <p>Built and designed as one of CodeCore's ongoing project. This web application utilizes the Rails framework that includes all the applications actions. Using a postgreSQL database, this application features Bootstrap along with CSS for styling.</p>
-  </div>
-</div>
 
 </body>
 </html>

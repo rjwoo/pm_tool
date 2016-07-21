@@ -1,9 +1,12 @@
-<h1 class="page-title">All Projects</h1>
+<div class="forms">
+  <h1 class="page-title">All Projects</h1>
+  <hr>
 
-<% @projects.each do |project| %>
-  <div>
-    <h2><%= link_to project.title, project_path(project) %></h2>
-    <p><%= project.description %></p>
-    <p class="due_date"><%= project.due_date %></p>
-  </div>
-<% end %>
+  <% @projects.each do |project| %>
+    <div>
+      <h2><%= link_to project.title, project_path(project) %></h2>
+      <p><%= project.description %></p>
+      <p class="due_date"><%= project.due_date %></p>
+    </div>
+  <% end %>
+</div>
