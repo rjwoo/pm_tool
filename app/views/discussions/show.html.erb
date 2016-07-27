@@ -1,15 +1,17 @@
-<div class="discussion">
-  <h1><%= @discussion.title %></h1>
-  <h3 class="discussion-body"><%= @discussion.body %></h3>
-</div>
+<div class="forms">
+  <div class="discussion">
+    <h1><%= @discussion.title %></h1>
+    <h3 class="discussion-body"><%= @discussion.body %></h3>
+  </div>
 
-<h2>Add New Comment</h2>
-<div id="comment-form">
-  <%= render "/comments/form" %>
-</div>
+  <h2>Add New Comment</h2>
+  <div id="comment-form">
+    <%= render "/comments/form" %>
+  </div>
 
-<h3>Comments</h3>
-<% @comment.errors.full_messages.join(", ") %>
-<div id="comments">
-  <%= render "/comments/comments", comments: @discussion.comments %>
+  <h3>Comments</h3>
+  <% @comment.errors.full_messages.join(", ") %>
+  <div id="comments">
+    <%= render "/comments/comments", comments: @discussion.comments %>
+  </div>
 </div>
