@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
-before_action :task_params, only: [:create, :update]
-before_action :find_tasks, only: [:show, :edit, :update, :destroy, :undone]
+  before_action :task_params, only: [:create, :update]
+  before_action :find_tasks, only: [:show, :edit, :update, :destroy, :undone]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @task = Task.new
