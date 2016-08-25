@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new project_params
-    @project.user = current_user
+    @project.user_id = current_user.id
     if @project.save
       flash[:notice] = "Project Created!"
       redirect_to project_path(@project)
@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def show
