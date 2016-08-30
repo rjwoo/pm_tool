@@ -17,8 +17,10 @@
     <div class="flash-alert"><%= flash[:alert] %></div>
   <% end %>
 
+
 <%= yield %>
 
-
+  <%= render "/layouts/footer" %>
 </body>
+
 </html>

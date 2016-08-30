@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   patch "users/:id/update_password" => "users#update_password", as: :update_password
 
+
+
   resources :users, only: [:new, :create] do
     get :edit, on: :collection
     patch :update, on: :collection
@@ -15,7 +17,6 @@ Rails.application.routes.draw do
 
   # root 'home#index'
   resources :projects do
-
     resources :members, only: [:create, :destroy]
     resources :favourites, only: [:create, :destroy]
     resources :tasks do
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
 
   get "/" => "home#index", as: :root
   get "/about" => "home#about"
+  get "/contact" => "home#contact"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
