@@ -89,3 +89,28 @@ header {
 body > div.footer > div {
   text-align: center;
 }
+
+.flash-notice {
+ width: 60%;
+ height: 40px;
+ background-color: #c2c4fc;
+ border-left: 12px solid #282c3c;
+ margin: auto;
+ text-align: center;
+ line-height: 40px;
+ border-radius: 5px;
+ color: white;
+ margin-top: 35px;
+}
+
+.flash-alert {
+ width: 60%;
+ height: 40px;
+ background-color: #ff5454;
+ border-left: 12px solid #820505;
+ margin: auto;
+ text-align: center;
+ line-height: 40px;
+ border-radius: 5px;
+ margin-top: 35px;
+}
