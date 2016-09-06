@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :project_params, only: [:create, :update]
   before_action :find_projects, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   before_action :authorize_owner, only: [:edit, :destroy, :update]
 
   def new
